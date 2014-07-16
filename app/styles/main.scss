@@ -6,7 +6,7 @@
 body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #333;
+  background-color: #eeeeee;
 }
 
 #todo-container {
@@ -26,13 +26,16 @@ body {
 }
 
 #new-todo {
-  width: 200px;
+  width: 270px;
+  height: 40px;
+  font-size: 18px;
+  font-style: italic;
 }
 
 .thing
   li {
     list-style: none;
-    display: inline-block;
+    margin-bottom: 10px;
     font-size: 20px;
     color: #f26934;
   }

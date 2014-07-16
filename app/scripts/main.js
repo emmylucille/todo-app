@@ -1,13 +1,22 @@
 //MODEL
   var Task = Backbone.Model.extend({
+
     defaults: function(){
       return {
       todo: '',
       done: false
-      };
+      }
     },
+
     idAttribute: '_id',
-    urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/grub'
+    urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/grub',
+
+    toggle: function(){
+      this.save({
+        done: !this.get('done')
+      });
+    }
+
   });
 
 var task = new Task();
@@ -15,7 +24,14 @@ var task = new Task();
 //COLLECTION
   var TaskList = Backbone.Collection.extend({
     model: Task,
-    url: "http://tiny-pizza-server.herokuapp.com/collections/grub"
+    url: "http://tiny-pizza-server.herokuapp.com/collections/grub",
+    //Puts them in alphabetical order
+    comparator: function(collection) {
+      return collection.get('todo').toLowerCase();
+    },
+    // done: function() {
+		// 	return this.where({done: true});
+		// },
   });
 
   var taskList = new TaskList();
@@ -23,19 +39,38 @@ var task = new Task();
 //VIEW
   var TaskView = Backbone.View.extend({
     model: Task,
-    tagName: 'li',
+    // tagName: 'li',
 
     events: {
-      'click .edit' : 'edit',
+      'click .toggle' : 'toggleDone',
       'click .delete' : 'delete',
-      'blur .title' : 'close',
-      'keypress .title' : 'enterSubmit'
+      // 'blur .title' : 'close',
+      // 'keypress .title' : 'enterSubmit',
+      // 'click .edit' : 'edit'
+    },
+
+    toggleDone: function(e) {
+      var id = $(e.target).parent().attr('id');
+      var item = this.collection.get(id)
+      item.toggle();
+      console.log(item.attributes);
     },
 
     delete: function(e){
-      e.preventDefault();
-      this.$('.title').attr('editable', true).focus();
+      // var id = $(e.target).parent().attr('id');
+      // var item = this.collection.get(id)
+      var doneItems = this.collection.where({done: true});
+      _.each(doneItems, function (item) {
+        item.destroy({success: function (model, response) {
+          window.location.reload();
+        }});
+      })
     },
+
+    // delete: function() {
+		// 	_.invoke(taskList.done(), "destroy");
+		// 	return false;
+		// },
 
     initialize: function() {
       this.listenTo(this.collection, 'add', this.render);
@@ -57,7 +92,7 @@ var task = new Task();
   })
 
   var AppView = Backbone.View.extend( {
-
+    el: '#todo-container'
   });
 
 $(document).ready(function(){
@@ -69,6 +104,16 @@ $(document).ready(function(){
       console.log(taskList.toJSON());
       return false;
     });
+
+    // $('.todo_list').on('click','.removeTask',function() {
+    //   var $this = $(this),
+    //     id = $this.data('id'),
+    //     todo = todoList.get(id);
+    //
+    //   $this.parent().remove();
+    //
+    //   todo.destroy();
+    // });
 })
 
 // if (e.which !== 13 || !this.input.val().trim()) this.close() ){

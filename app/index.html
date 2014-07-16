@@ -26,19 +26,20 @@
       <h1>My Todos</h1>
 
       <form id="list">
-        <input id="new-todo" placeholder="What needs to get done?" type="text">
-        <button>submit</button>
+        <input id="new-todo" placeholder="new todo" type="text">
+        <!-- <button>submit</button> -->
       </form>
     </div>
 
     <script id="todo-list" type="text/x-handlebars-template">
-      {{#each taskList}}
         <div class='thing'>
           <ul>
-            <input class="toggle" type= "checkbox"></input><li>{{todo}}</li>
+            {{#each taskList}}
+              <li id="{{_id}}"><input class="toggle" type= "checkbox"></input>{{todo}}</li>
+            {{/each}}
           </ul>
+          <button class="delete">clear completed</button>
         </div>
-      {{/each}}
     </script>
 
     <!-- build:js scripts/vendor.js -->
