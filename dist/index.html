@@ -14,28 +14,28 @@
     <script src="scripts/vendor/modernizr.js"></script>
   </head>
   <body>
+    <div id="todo-container">
+      <h1>My Todos</h1>
 
-    <h1>My Todos</h1>
-
-    <form id="list">
-      <input id="new-todo" placeholder="What needs to get done?" type="text">
-      <button>submit</button>
-    </form>
-
-    <div id="todo-container"></div>
+      <form id="list">
+        <input id="new-todo" placeholder="new todo" type="text">
+        <!-- <button>submit</button> -->
+      </form>
+    </div>
 
     <script id="todo-list" type="text/x-handlebars-template">
-      {{#each taskList}}
         <div class='thing'>
           <ul>
-            <li>{{todo}}</li>
+            {{#each taskList}}
+              <li id="{{_id}}"><input class="toggle" type= "checkbox"></input>{{todo}}</li>
+            {{/each}}
           </ul>
+          <a href= "#" class="delete">clear completed</a>
         </div>
-      {{/each}}
     </script>
 
     <script src="scripts/vendor.js"></script>
 
-        <script src="scripts/main.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
