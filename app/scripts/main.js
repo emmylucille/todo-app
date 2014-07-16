@@ -105,6 +105,24 @@ $(document).ready(function(){
       console.log(taskList.toJSON());
       return false;
     });
+});
+
+var AppRouter = Backbone.Router.extend({
+  routes: {
+    '' : 'showTodos'
+  },
+
+  showTodos : function() {
+    var App = new TaskView();
+  }
+})
+
+//start your router:
+new AppRouter();
+Backbone.history.start();
+
+
+//Extras
 
 //Delete from Justin
     // $('.todo_list').on('click','.removeTask',function() {
@@ -116,7 +134,7 @@ $(document).ready(function(){
     //
     //   todo.destroy();
     // });
-})
+
 
 // if (e.which !== 13 || !this.input.val().trim()) this.close() ){
 //   return;

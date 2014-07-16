@@ -57,8 +57,6 @@ var task = new Task();
     },
 
     delete: function(e){
-      // var id = $(e.target).parent().attr('id');
-      // var item = this.collection.get(id)
       var doneItems = this.collection.where({done: true});
       _.each(doneItems, function (item) {
         item.destroy({success: function (model, response) {
