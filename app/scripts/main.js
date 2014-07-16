@@ -99,12 +99,14 @@ $(document).ready(function(){
   $('#todo-container').append(taskView.render().$el);
   $('#list').submit(function(ev){
       var task = new Task({todo: $('#new-todo').val()});
+      $('form').find('input[type=text]').val('')
       task.save();
       taskList.add(task);
       console.log(taskList.toJSON());
       return false;
     });
 
+//Delete from Justin
     // $('.todo_list').on('click','.removeTask',function() {
     //   var $this = $(this),
     //     id = $this.data('id'),

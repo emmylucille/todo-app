@@ -7,6 +7,7 @@ body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #eeeeee;
+  padding: 50px;
 }
 
 #todo-container {
@@ -14,7 +15,7 @@ body {
   border-radius: 5px;
   background-color: #faf8f2;
   padding: 20px;
-  margin: 20px;
+  margin: auto;
   box-shadow: 2px 2px 14px #d3d3d3;
   // background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
   h1 {
@@ -26,10 +27,11 @@ body {
 }
 
 #new-todo {
-  width: 270px;
+  width: 310px;
   height: 40px;
   font-size: 18px;
   font-style: italic;
+  color: #8adbe4;
 }
 
 .thing
@@ -41,8 +43,22 @@ body {
   }
   ul {
     padding: 0px;
+    margin: 30px 0px 40px 0px;
   }
 
 .toggle {
   margin-right: 10px;
 }
+
+.delete {
+  // @include button(shiny, #f26934);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: white;
+  font-style: italic;
+  font-size: 14px;
+  background-color: #8adbe4;
+  text-decoration: none;
+  border-radius: 2px;
+  padding: 5px 10px;
+  box-shadow: 1px 1px 5px #d3d3d3;
+  }
