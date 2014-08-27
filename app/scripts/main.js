@@ -91,9 +91,9 @@ var task = new Task();
     collection: taskList
   })
 
-  var AppView = Backbone.View.extend( {
-    el: '#todo-container'
-  });
+  // var AppView = Backbone.View.extend( {
+  //   el: '#todo-container'
+  // });
 
 $(document).ready(function(){
   $('#todo-container').append(taskView.render().$el);
